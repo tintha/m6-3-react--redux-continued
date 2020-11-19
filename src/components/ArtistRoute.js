@@ -8,6 +8,7 @@ import {
   receiveArtistProfile,
   receiveArtistError,
 } from "../actions";
+import styled from "styled-components";
 
 import Header from "./Artist/Header";
 import Followers from "./Artist/Followers";
@@ -46,15 +47,19 @@ const ArtistRoute = () => {
     if (!accessToken) {
       return;
     }
-    console.log(accessToken);
+
     dispatch(requestArtistProfile());
-    fetchArtistProfile(accessToken, artistId).then((data) => {
-      dispatch(receiveArtistProfile(data));
-    });
+    fetchArtistProfile(accessToken, artistId)
+      .then((data) => {
+        dispatch(receiveArtistProfile(data));
+      })
+      .catch((error) => {
+        dispatch(receiveArtistError(error));
+      });
   }, [artistId, accessToken]);
 
   return (
-    <>
+    <ArtistPageContainer>
       {artistProfile && (
         <>
           <Header
@@ -65,11 +70,17 @@ const ArtistRoute = () => {
             numFollowers={nFormatter(artistProfile.profile.followers.total)}
           />
 
-          <Tags tags={tags} />
+          <Tags firstTag={tags[0]} secondTag={tags[1]} />
         </>
       )}
-    </>
+    </ArtistPageContainer>
   );
 };
+
+const ArtistPageContainer = styled.div`
+  position: relative;
+  max-width: 480px;
+  margin: auto;
+`;
 
 export default ArtistRoute;

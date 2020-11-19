@@ -4,7 +4,6 @@ const initalState = {
 };
 
 export default function authReducer(state = initalState, action) {
-  console.log(action);
   switch (action.type) {
     case "REQUEST_ACCESS_TOKEN": {
       return {

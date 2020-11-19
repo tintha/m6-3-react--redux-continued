@@ -4,18 +4,7 @@ const initialState = {
   error: null,
 };
 
-/*
-The 'type' for current artist will look like this:
-{
-  id: 'abc123',
-  profile: profile response,
-  topTracks: top tracks response,
-  relatedArtists: related artists response
-}
-*/
-
 export default function artistsReducer(state = initialState, action) {
-  console.log(action);
   switch (action.type) {
     case "REQUEST_ARTIST_PROFILE": {
       return {
