@@ -20,8 +20,9 @@ const StyledHeader = styled.div`
 
 const HeaderContainer = styled.div`
   position: relative;
-  width: 200px;
-  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   top: 59px;
 `;
 
@@ -29,6 +30,7 @@ const ProfileImage = styled.img`
   border-radius: 50%;
   width: 175px;
   height: 175px;
+  margin: auto;
 `;
 
 const ArtistName = styled.div`
